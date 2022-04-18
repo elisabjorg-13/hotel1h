@@ -8,7 +8,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="515.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vidmot.SearchController">
+<?import javafx.scene.control.Button?>
+<AnchorPane prefHeight="515.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SearchController">
    <children>
       <Label alignment="CENTER" layoutX="148.0" layoutY="44.0" prefHeight="33.0" prefWidth="304.0" text="Find the perfect hotel for you">
          <font>
@@ -26,6 +27,7 @@
       <Label layoutX="251.0" layoutY="257.0" text="max price" />
       <DatePicker layoutX="45.0" layoutY="302.0" prefHeight="18.0" prefWidth="255.0" promptText="select arrival date" />
       <DatePicker layoutX="45.0" layoutY="367.0" prefHeight="27.0" prefWidth="255.0" promptText="Select departure date" />
+      <Button layoutX="45.0" layoutY="440.0" text="Search"/>
       <ListView layoutX="344.0" layoutY="151.0" prefHeight="285.0" prefWidth="200.0" />
       <Label layoutX="344.0" layoutY="121.0" prefHeight="27.0" prefWidth="200.0" text="We found these hotels for you:" />
    </children>
