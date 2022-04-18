@@ -8,7 +8,9 @@ import javafx.stage.Stage;
 
 public class Controller {
     private FXMLLoader loader2;//loaderinn
+    private FXMLLoader loader3;
     private Scene s;//senan
+    private Scene s2;
     private Stage stage = new Stage();
 
 
@@ -25,7 +27,7 @@ public class Controller {
             Parent root1 = (Parent) loader2.load();
             //Stage stage = new Stage();
 
-            stage.setTitle("Space Invaders");
+            stage.setTitle("Search Hotel");
             s = new Scene(root1, 600, 600);
             stage.setScene(s);
 
@@ -41,6 +43,24 @@ public class Controller {
 
 
     public void addhotel(ActionEvent actionEvent) {
+        try {
+
+            loader3 = new FXMLLoader(getClass().getResource("addHotel.fxml"));
+            Parent root1 = (Parent) loader3.load();
+            //Stage stage = new Stage();
+
+            stage.setTitle("Add Hotel");
+            s2 = new Scene(root1, 600, 450);
+            stage.setScene(s2);
+
+
+            stage.show();
+
+        }catch (Exception e){
+            System.out.println("gat ekki hlaðið glugga");
+        }
+        addHotelController ac = loader3.getController();
+
 
 
     }
