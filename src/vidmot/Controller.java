@@ -1,4 +1,4 @@
-package sample;
+package vidmot;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -59,7 +59,7 @@ public class Controller {
         }catch (Exception e){
             System.out.println("gat ekki hlaðið glugga");
         }
-        addHotelController ac = loader3.getController();
+        AddHotelController ac = loader3.getController();
 
 
 

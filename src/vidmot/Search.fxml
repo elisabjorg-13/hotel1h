@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="515.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SearchController">
+<AnchorPane prefHeight="515.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vidmot.SearchController">
    <children>
       <Label alignment="CENTER" layoutX="148.0" layoutY="44.0" prefHeight="33.0" prefWidth="304.0" text="Find the perfect hotel for you">
          <font>
