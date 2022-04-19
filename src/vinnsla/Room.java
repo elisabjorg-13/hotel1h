@@ -1,6 +1,7 @@
 package vinnsla;
 
 import java.util.Date;
+import java.util.function.BooleanSupplier;
 
 public class Room {
     private String hotelName;
@@ -11,35 +12,40 @@ public class Room {
     private Date arrivalTime;
     private int numberOfBeds;
     private boolean booked = false;
+    private String hotelAddress;
+    private boolean petFriendly;
+    private boolean familyFriendly;
 
     /**
      * Smiður fyrir herbergi
      */
-    public Room(String hotelName, int roomId, int hotelId, int roomRank, int price ,Date arrivalTime, int numberOfBeds,boolean booked) {
+    public Room(java.sql.Date arrivalTime, String hotelName, String hotelAddress, int price, int roomRank, int numberOfBeds, boolean petfriendly, boolean familyfriendly) {
+        this.arrivalTime = arrivalTime;
         this.hotelName = hotelName;
-        this.roomId = roomId;
-        this.hotelId = hotelId;
-        this. roomRank = roomRank;
+        this.hotelAddress = hotelAddress;
+        this.roomRank = roomRank;
         this.price = price;
-        this.arrivalTime = arrivalTime;
         this.numberOfBeds = numberOfBeds;
-        this.booked = booked;
+        this.petFriendly = petfriendly;
+        this.familyFriendly = familyfriendly;
     }
 
-    public void setArrivalTime(Date arrivalTime) {
-        this.arrivalTime = arrivalTime;
-    }
 
-    public void setBooked(boolean booked) {
-        this.booked = booked;
-    }
-
-    public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
-    }
 
     public void setHotelName(String hotelName) {
         this.hotelName = hotelName;
+    }
+
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public Boolean getPetfriendly() {
+        return petFriendly;
+    }
+
+    public Boolean getFamilyfriendly() {
+        return familyFriendly;
     }
 
     public void setNumberOfBeds(int numberOfBeds) {
@@ -54,9 +60,6 @@ public class Room {
         this.roomRank = roomRank;
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
 
     public void bookRoom(){
         booked = true;
