@@ -34,7 +34,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button onAction="#addHotelHandler" fx:id="AddId" layoutX="233.0" layoutY="276.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="134.0" text="Add">
+      <Button fx:id="AddId" layoutX="233.0" layoutY="276.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="134.0" onAction="#addHotelHandler" text="Add">
          <font>
             <Font name="Arial Black" size="13.0" />
          </font>
