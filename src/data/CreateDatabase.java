@@ -33,6 +33,7 @@ public class CreateDatabase {
             if (dbFile.exists()) {
                 dbFile.delete();
             }
+            Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection(url);
             conn.setAutoCommit(false);
             Reader reader = new FileReader(schema);
