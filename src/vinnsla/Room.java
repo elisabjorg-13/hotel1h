@@ -1,5 +1,7 @@
 package vinnsla;
 
+import javafx.collections.FXCollections;
+
 import java.util.Date;
 import java.util.function.BooleanSupplier;
 
@@ -19,7 +21,7 @@ public class Room {
     /**
      * Smiður fyrir herbergi
      */
-    public Room(int roomId, java.sql.Date arrivalTime, String hotelName, String hotelAddress, int price, int roomRank, int numberOfBeds, int petfriendly, int familyfriendly) {
+    public Room(int roomId, java.sql.Date arrivalTime,String hotelName , String hotelAddress, int price, int roomRank, int numberOfBeds, int petfriendly, int familyfriendly) {
         this.roomId = roomId;
         this.arrivalTime = arrivalTime;
         this.hotelName = hotelName;
@@ -30,6 +32,16 @@ public class Room {
         this.petFriendly = petfriendly;
         this.familyFriendly = familyfriendly;
     }
+
+
+    public String toString(){
+        return (getHotelName()+" "+getPrice());
+
+    }
+
+
+
+
 
 
 
@@ -43,6 +55,10 @@ public class Room {
 
     public int getPetfriendly() {
         return petFriendly;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     public int getFamilyfriendly() {
