@@ -1,5 +1,6 @@
 package vidmot;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -38,8 +39,9 @@ public class SearchController {
     private Boolean submit;
     private double sliderVal;
 
-
-
+    public void initialize(){
+        valueId.textProperty().bind(Bindings.format("%.2f", sliderValue.valueProperty()));
+    }
 
 
     public void searchbuttonHandler(ActionEvent actionEvent) {
@@ -52,7 +54,7 @@ public class SearchController {
         komutimi = arrivaldateId.getValue();
         sliderVal = sliderValue.getValue();
 
-        
+
 
 
 
