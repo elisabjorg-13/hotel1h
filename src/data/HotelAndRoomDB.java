@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import vinnsla.Room;
-import java.time.LocalDate;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -76,7 +75,7 @@ public class HotelAndRoomDB implements MakeConnection {
         }
     }
 
-    public int addRoom(int roomRank, int price, Date arrivalTime, int numberOfBeds, boolean petFriendly, boolean familyFriendly){
+    public int addRoom(int roomRank, int price, Date arrivalTime, int numberOfBeds, boolean petFriendly, boolean familyFriendly, boolean booked){
         String query = "INSERT INTO Rooms"
                 +"(roomRank,"
                 +"price,"
@@ -84,8 +83,9 @@ public class HotelAndRoomDB implements MakeConnection {
                 +"departureTime,"
                 +"numberOfBeds,"
                 +"petFriendly,"
-                +"familyFriendly)"
-                +"values(?,?,?,?,?,?,?);";
+                +"familyFriendly,"
+                +"booked)"
+                +"values(?,?,?,?,?,?,?,?);";
         try {
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
@@ -97,6 +97,7 @@ public class HotelAndRoomDB implements MakeConnection {
             ps.setInt(4, numberOfBeds);
             ps.setBoolean(5, petFriendly);
             ps.setBoolean(6, familyFriendly);
+            ps.setBoolean(7, booked);
             ps.executeUpdate();
             ps.close();
             conn.commit();
@@ -107,7 +108,7 @@ public class HotelAndRoomDB implements MakeConnection {
         }
     }
 
-    public ObservableList<Room> searchRooms(int priceLow, int priceHigh, Date arrivalTime, int numberOfBeds, boolean petFriendly, boolean familyFriendly, String country){
+    public ObservableList<Room> searchRooms(int priceLow, int priceHigh, java.sql.Date arrivalTime, int numberOfBeds, boolean petFriendly, boolean familyFriendly, String country){
         validConnection(conn);
         ObservableList<Room> t = FXCollections.observableArrayList();
         String query = "SELECT Hotels.hotelName, Hotels.hotelAddress, Rooms.price, Rooms.roomRank, Rooms.numberOfBeds, Rooms.petFriendly, Rooms.familyFriendly,"
@@ -127,6 +128,7 @@ public class HotelAndRoomDB implements MakeConnection {
                 +petFriendly
                 +" AND familyFriendly="
                 +familyFriendly
+                +" AND booked=0"
                 +" ORDER BY Rooms.roomId;";
         try {
             conn.setAutoCommit(false);
@@ -149,7 +151,6 @@ public class HotelAndRoomDB implements MakeConnection {
                             rs.getInt("season"),
                             rs.getInt("location"),
                             rs.getString("providerName")
-
                              */
                     );
                 }
@@ -166,7 +167,7 @@ public class HotelAndRoomDB implements MakeConnection {
         }
     }
 
-    public boolean removeTour(int roomId) {
+    public boolean removeRoom(int roomId) {
         validConnection(conn);
         String query = "DELETE FROM Rooms WHERE roomId = ? CASCADE";
         try {
