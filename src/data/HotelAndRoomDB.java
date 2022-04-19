@@ -134,31 +134,28 @@ public class HotelAndRoomDB implements MakeConnection {
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
-            Room currentRoom = new Room();
+            //Room currentRoom = new Room();
             int currentId = 0;
-            while(rs.next()) {
+            Room currentRoom = null;
+            while (rs.next()) {
                 int id = rs.getInt("roomId");
-                if(id!=currentId) {
+                if (id != currentId) {
                     currentId = id;
                     currentRoom = new Room(
-                            /*
                             currentId,
-                            rs.getString("tourName"),
-                            rs.getString("description"),
+                            rs.getString("hotelName"),
+                            rs.getString("hotelAddress"),
                             rs.getInt("price"),
-                            rs.getInt("difficulty"),
-                            rs.getInt("childFriendly"),
-                            rs.getInt("season"),
-                            rs.getInt("location"),
-                            rs.getString("providerName")
-                             */
+                            rs.getInt("roomRank"),
+                            rs.getInt("numberOfBeds"),
+                            rs.getBoolean("petFriendly"),
+                            rs.getBoolean("familyFriendly")
                     );
                 }
                 LocalDateTime ldt = toLocalDateTime(rs.getLong("tourDate"));
             }
             stmt.close();
             rs.close();
-            //currentRoom.setDates(currentTourDates);
             t.add(currentRoom);
             return t;
         } catch(SQLException e) {
