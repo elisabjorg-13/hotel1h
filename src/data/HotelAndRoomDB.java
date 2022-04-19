@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import vinnsla.Room;
-
+import java.time.LocalDate;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -53,19 +53,19 @@ public class HotelAndRoomDB implements MakeConnection {
         }
     }
 
-    public int addHotel(String name, String country, String address){
+    public int addHotel(String hotelName, String country, String hotelAddress){
         String query = "INSERT INTO Hotels"
-                +"(name,"
+                +"(hotelName,"
                 +"country,"
-                +"address)"
+                +"hotelAddress)"
                 +"values(?,?,?);";
         try {
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
             ps = conn.prepareStatement(query);
-            ps.setString(1, name);
+            ps.setString(1, hotelName);
             ps.setString(2, country);
-            ps.setString(3, address);
+            ps.setString(3, hotelAddress);
             ps.executeUpdate();
             ps.close();
             conn.commit();
@@ -76,19 +76,27 @@ public class HotelAndRoomDB implements MakeConnection {
         }
     }
 
-    public int addRoom(int roomRank, int price, Date arrTime, Date departureTime, int nBeds, boolean petFriendly, boolean familyFriendly){
+    public int addRoom(int roomRank, int price, Date arrivalTime, int numberOfBeds, boolean petFriendly, boolean familyFriendly){
         String query = "INSERT INTO Rooms"
-                +"(,"
-                +"country,"
-                +"address)"
-                +"values(?,?,?);";
+                +"(roomRank,"
+                +"price,"
+                +"arrivalTime,"
+                +"departureTime,"
+                +"numberOfBeds,"
+                +"petFriendly,"
+                +"familyFriendly)"
+                +"values(?,?,?,?,?,?,?);";
         try {
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
             ps = conn.prepareStatement(query);
-            ps.setString(1, name);
-            ps.setString(2, country);
-            ps.setString(3, address);
+            ps.setInt(1, roomRank);
+            ps.setInt(2, price);
+            ps.setDate(3, arrivalTime);
+            //ps.setDate(4, departureTime);
+            ps.setInt(4, numberOfBeds);
+            ps.setBoolean(5, petFriendly);
+            ps.setBoolean(6, familyFriendly);
             ps.executeUpdate();
             ps.close();
             conn.commit();
@@ -99,5 +107,78 @@ public class HotelAndRoomDB implements MakeConnection {
         }
     }
 
-    public ObservableList<Room> searchRooms()
+    public ObservableList<Room> searchRooms(int priceLow, int priceHigh, Date arrivalTime, int numberOfBeds, boolean petFriendly, boolean familyFriendly, String country){
+        validConnection(conn);
+        ObservableList<Room> t = FXCollections.observableArrayList();
+        String query = "SELECT Hotels.hotelName, Hotels.hotelAddress, Rooms.price, Rooms.roomRank, Rooms.numberOfBeds, Rooms.petFriendly, Rooms.familyFriendly,"
+                +"FROM Rooms, Hotels "
+                +"WHERE Rooms.hotelId=Hotel.hotelId "
+                +" AND price BETWEEN "
+                +priceLow
+                +" AND "
+                +priceHigh
+                +" AND country="
+                +country
+                +" AND arrivalTime="
+                +arrivalTime
+                +" AND numberOfBeds="
+                +numberOfBeds
+                +" AND petFriendly="
+                +petFriendly
+                +" AND familyFriendly="
+                +familyFriendly
+                +" ORDER BY Rooms.roomId;";
+        try {
+            conn.setAutoCommit(false);
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+            Room currentRoom = new Room();
+            int currentId = 0;
+            while(rs.next()) {
+                int id = rs.getInt("roomId");
+                if(id!=currentId) {
+                    currentId = id;
+                    currentRoom = new Room(
+                            /*
+                            currentId,
+                            rs.getString("tourName"),
+                            rs.getString("description"),
+                            rs.getInt("price"),
+                            rs.getInt("difficulty"),
+                            rs.getInt("childFriendly"),
+                            rs.getInt("season"),
+                            rs.getInt("location"),
+                            rs.getString("providerName")
+
+                             */
+                    );
+                }
+                LocalDateTime ldt = toLocalDateTime(rs.getLong("tourDate"));
+            }
+            stmt.close();
+            rs.close();
+            //currentRoom.setDates(currentTourDates);
+            t.add(currentRoom);
+            return t;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return t;
+        }
+    }
+
+    public boolean removeTour(int roomId) {
+        validConnection(conn);
+        String query = "DELETE FROM Rooms WHERE roomId = ? CASCADE";
+        try {
+            conn.setAutoCommit(false);
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, roomId);
+            int result = ps.executeUpdate();
+            ps.close();
+            conn.commit();
+            return result > 0;
+        }catch (SQLException e){
+            return false;
+        }
+    }
 }

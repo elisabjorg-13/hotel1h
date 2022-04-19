@@ -22,7 +22,7 @@ import static application.Utils.*;
 public class PopulateDatabase {
 
     private final HotelAndRoomDB hrdb;
-    private final DateDb ddb;
+    private final UserDB udb;
     private final String url;
     private final String dbName;
 
@@ -31,7 +31,7 @@ public class PopulateDatabase {
      */
     private PopulateDatabase() {
         hrdb = new HotelAndRoomDB();
-        ddb = new DateDb();
+        udb = new UserDB();
         String[] strings = getUrlAndDatabase();
         url = strings[0];
         dbName = strings[1];
@@ -97,7 +97,9 @@ public class PopulateDatabase {
             while ((line = br.readLine()) != null) {
                 String[] stringArray = line.split(";");
                 String[] lineArray = Arrays.stream(stringArray).map(String::trim).toArray(String[]::new);
-                num = hrdb.makeTour(
+                num = 1;
+                /*
+                num = hrdb.addRoom(
                         lineArray[0],
                         Integer.parseInt(lineArray[1]),
                         lineArray[2],
@@ -107,6 +109,8 @@ public class PopulateDatabase {
                         Integer.parseInt(lineArray[6]),
                         lineArray[7]
                 );
+
+                 */
             }
             hrdb.closeConnection();
             if(num>0) {
@@ -117,44 +121,11 @@ public class PopulateDatabase {
         }
     }
 
-    /**
-     * Populates the Dates table in tour.db with fake data.
-     */
-    private void makeDates() {
-        try {
-            BufferedReader br = readFile("dates.txt");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH");
-            boolean b = false;
-            String line;
-            ddb.openConnection();
-            while ((line = br.readLine()) != null) {
-                String[] stringArray = line.split(";");
-                String[] lineArray = Arrays.stream(stringArray).map(String::trim).toArray(String[]::new);
-                java.util.Date date = sdf.parse(lineArray[1]);
-                Date sqlDate = new Date(date.getTime());
-                b = ddb.makeDate(
-                        Integer.parseInt(lineArray[0]),
-                        sqlDate,
-                        Integer.parseInt(lineArray[2]),
-                        Integer.parseInt(lineArray[3])
-                );
-            }
-            ddb.closeConnection();
-            if(b) {
-                System.out.println("--Dates populated--");
-            }
-            else System.out.println("--Failed to populate Dates--");
-        } catch (IOException | ParseException e) {
-            System.out.println("--Failed to populate Dates--");
-        }
-    }
-
     public static void main(String[] args) {
         PopulateDatabase pd = new PopulateDatabase();
         if (pd.realFile()) {
             pd.clearTables();
             pd.makeTours();
-            pd.makeDates();
         } else System.err.println("Database missing");
     }
 }
