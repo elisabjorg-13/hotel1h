@@ -17,13 +17,16 @@ public class CreateDatabase {
      *
      * @throws SQLException If the program isn't able to close the connection properly.
      */
-    private static void createDatabase() throws SQLException {
+    private static void createDatabase() throws SQLException, ClassNotFoundException {
+        //Class.forName("org.sqlite.JDBC");
         Connection conn = null;
         Statement stmt;
         String[] strings = getUrlAndDatabase();
         String url = strings[0];
         String dbName = strings[1];
         String schema = getSrcPath() + "data/schema.sql";
+        System.out.println("Schema: "+schema);
+        System.out.println("dbName: "+dbName);
         StringBuffer command=null;
         try {
             File dbFile = new File(dbName);
@@ -63,7 +66,7 @@ public class CreateDatabase {
     public static void main(String[] args) {
         try {
             createDatabase();
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
