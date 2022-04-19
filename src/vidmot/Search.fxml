@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="515.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vidmot.SearchController">
+<AnchorPane prefHeight="515.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vidmot.SearchController">
    <children>
       <Label alignment="CENTER" layoutX="148.0" layoutY="44.0" prefHeight="33.0" prefWidth="304.0" text="Find the perfect hotel for you">
          <font>
@@ -17,7 +22,7 @@
          </font></Label>
       <CheckBox fx:id="petfriendlyId" layoutX="53.0" layoutY="148.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="140.0" text="Pet - Friendly" />
       <CheckBox fx:id="familyfriendlyId" layoutX="53.0" layoutY="199.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="128.0" text="Family - friendly" />
-      <Slider layoutX="111.0" layoutY="258.0" />
+      <Slider fx:id="sliderValue" layoutX="111.0" layoutY="258.0" />
       <Label layoutX="53.0" layoutY="257.0" text="min price" />
       <Label layoutX="251.0" layoutY="257.0" text="max price" />
       <DatePicker fx:id="arrivaldateId" layoutX="45.0" layoutY="316.0" prefHeight="18.0" prefWidth="255.0" promptText="select arrival date" />

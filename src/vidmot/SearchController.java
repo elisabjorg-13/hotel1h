@@ -4,6 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 /******************************************************************************
  *  Nafn    : Elísa Björg
  *  T-póstur: ebt15@hi.is
@@ -26,9 +29,14 @@ public class SearchController {
     private ListView listviewId;
     @FXML
     private  Label valueId;
+    @FXML
+    Slider sliderValue;
 
     private Boolean fjolskylduvaent;
     private Boolean gaeludyr;
+    private LocalDate komutimi;
+    private Boolean submit;
+    private double sliderVal;
 
 
 
@@ -41,6 +49,11 @@ public class SearchController {
         if(familyfriendlyId.isSelected()){
             gaeludyr = true;
         }
+        komutimi = arrivaldateId.getValue();
+        sliderVal = sliderValue.getValue();
+
+        
+
 
 
     }
