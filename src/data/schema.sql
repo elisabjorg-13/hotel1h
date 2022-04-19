@@ -1,6 +1,6 @@
 CREATE TABLE Rooms (
     roomId INTEGER PRIMARY KEY,
-    hotelId int PRIMARY KEY,
+    hotelId int NOT NULL,
     roomRank int(1) NOT NULL CHECK(roomRank IN (1,2,3,4)),
     price int NOT NULL,
     arrivalTime DATE NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE Hotels (
 
 CREATE TABLE Reviews (
     hotelId int PRIMARY KEY,
-    userId int PRIMARY KEY,
+    userId int NOT NULL,
     reviewText varchar(2000),
     rating int(1) NOT NULL CHECK(rating IN(1,2,3,4,5)),
     FOREIGN KEY(hotelId) REFERENCES Hotels(hotelId),

@@ -34,7 +34,8 @@ public class CreateDatabase {
                 dbFile.delete();
             }
             Class.forName("org.sqlite.JDBC");
-            conn = DriverManager.getConnection(url);
+            //conn = DriverManager.getConnection(url);
+            conn = DriverManager.getConnection("jdbc:sqlite:hotel.db");
             conn.setAutoCommit(false);
             Reader reader = new FileReader(schema);
             LineNumberReader lineReader = new LineNumberReader(reader);
