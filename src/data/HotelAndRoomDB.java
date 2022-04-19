@@ -111,7 +111,7 @@ public class HotelAndRoomDB implements MakeConnection {
     public ObservableList<Room> searchRooms(int priceLow, int priceHigh, java.sql.Date arrivalTime, int numberOfBeds, boolean petFriendly, boolean familyFriendly, String country){
         validConnection(conn);
         ObservableList<Room> t = FXCollections.observableArrayList();
-        String query = "SELECT Hotels.hotelName, Hotels.hotelAddress, Rooms.price, Rooms.roomRank, Rooms.numberOfBeds, Rooms.petFriendly, Rooms.familyFriendly,"
+        String query = "SELECT Rooms.arrivalTime, Hotels.hotelName, Hotels.hotelAddress, Rooms.price, Rooms.roomRank, Rooms.numberOfBeds, Rooms.petFriendly, Rooms.familyFriendly,"
                 +"FROM Rooms, Hotels "
                 +"WHERE Rooms.hotelId=Hotel.hotelId "
                 +" AND price BETWEEN "
@@ -143,6 +143,7 @@ public class HotelAndRoomDB implements MakeConnection {
                     currentId = id;
                     currentRoom = new Room(
                             currentId,
+                            rs.getDate("arrivalTime"),
                             rs.getString("hotelName"),
                             rs.getString("hotelAddress"),
                             rs.getInt("price"),

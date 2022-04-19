@@ -19,7 +19,8 @@ public class Room {
     /**
      * Smiður fyrir herbergi
      */
-    public Room(java.sql.Date arrivalTime, String hotelName, String hotelAddress, int price, int roomRank, int numberOfBeds, boolean petfriendly, boolean familyfriendly) {
+    public Room(int roomId, java.sql.Date arrivalTime, String hotelName, String hotelAddress, int price, int roomRank, int numberOfBeds, boolean petfriendly, boolean familyfriendly) {
+        this.roomId = roomId;
         this.arrivalTime = arrivalTime;
         this.hotelName = hotelName;
         this.hotelAddress = hotelAddress;
