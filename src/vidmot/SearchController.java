@@ -48,7 +48,7 @@ public class SearchController {
         if(familyfriendlyId.isSelected()){
             fjolskylduvaent = true;
         }
-        if(familyfriendlyId.isSelected()){
+        if(petfriendlyId.isSelected()){
             gaeludyr = true;
         }
         komutimi = arrivaldateId.getValue();
