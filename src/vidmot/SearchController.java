@@ -16,10 +16,15 @@ public class SearchController {
 
     @FXML
     private CheckBox familyfriendlyId;
+    @FXML
     private CheckBox petfriendlyId;
+    @FXML
     private DatePicker arrivaldateId;
+    @FXML
     private Button searchId;
+    @FXML
     private ListView listviewId;
+    @FXML
     private  Label valueId;
 
     private Boolean fjolskylduvaent;
