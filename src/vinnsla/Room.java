@@ -11,15 +11,15 @@ public class Room {
     private int price;
     private Date arrivalTime;
     private int numberOfBeds;
-    private boolean booked = false;
+    private int booked = 0;
     private String hotelAddress;
-    private boolean petFriendly;
-    private boolean familyFriendly;
+    private int petFriendly;
+    private int familyFriendly;
 
     /**
      * Smiður fyrir herbergi
      */
-    public Room(int roomId, java.sql.Date arrivalTime, String hotelName, String hotelAddress, int price, int roomRank, int numberOfBeds, boolean petfriendly, boolean familyfriendly) {
+    public Room(int roomId, java.sql.Date arrivalTime, String hotelName, String hotelAddress, int price, int roomRank, int numberOfBeds, int petfriendly, int familyfriendly) {
         this.roomId = roomId;
         this.arrivalTime = arrivalTime;
         this.hotelName = hotelName;
@@ -41,11 +41,11 @@ public class Room {
         return hotelName;
     }
 
-    public Boolean getPetfriendly() {
+    public int getPetfriendly() {
         return petFriendly;
     }
 
-    public Boolean getFamilyfriendly() {
+    public int getFamilyfriendly() {
         return familyFriendly;
     }
 
@@ -63,7 +63,7 @@ public class Room {
 
 
     public void bookRoom(){
-        booked = true;
+        booked = 1;
     }
 
 

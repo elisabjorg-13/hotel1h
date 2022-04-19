@@ -5,9 +5,9 @@ public class User {
     private String email;
     private String phone;
     private String userName;
-    private Boolean isAdmin;
+    private int isAdmin;
 
-    public User(int userId, String email, String phone, String userName, Boolean isAdmin){
+    public User(int userId, String email, String phone, String userName, int isAdmin){
         this.userId = userId;
         this.email = email;
         this.phone = phone;
@@ -28,7 +28,7 @@ public class User {
         return userId;
     }
 
-    public Boolean getAdmin() {
+    public int getAdmin() {
         return isAdmin;
     }
 
@@ -36,7 +36,7 @@ public class User {
         return userName;
     }
 
-    public void setAdmin(Boolean admin) {
+    public void setAdmin(int admin) {
         isAdmin = admin;
     }
 

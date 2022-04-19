@@ -75,12 +75,12 @@ public class HotelAndRoomDB implements MakeConnection {
         }
     }
 
-    public int addRoom(int roomRank, int price, Date arrivalTime, int numberOfBeds, boolean petFriendly, boolean familyFriendly, boolean booked){
+    public int addRoom(int hotelId, int roomRank, int price, Date arrivalTime, int numberOfBeds, boolean petFriendly, boolean familyFriendly, boolean booked){
         String query = "INSERT INTO Rooms"
-                +"(roomRank,"
+                +"(hotelId,"
+                +"roomRank,"
                 +"price,"
                 +"arrivalTime,"
-                +"departureTime,"
                 +"numberOfBeds,"
                 +"petFriendly,"
                 +"familyFriendly,"
@@ -90,14 +90,15 @@ public class HotelAndRoomDB implements MakeConnection {
             conn.setAutoCommit(false);
             stmt = conn.createStatement();
             ps = conn.prepareStatement(query);
-            ps.setInt(1, roomRank);
-            ps.setInt(2, price);
-            ps.setDate(3, arrivalTime);
+            ps.setInt(1, hotelId);
+            ps.setInt(2, roomRank);
+            ps.setInt(3, price);
+            ps.setDate(4, arrivalTime);
             //ps.setDate(4, departureTime);
-            ps.setInt(4, numberOfBeds);
-            ps.setBoolean(5, petFriendly);
-            ps.setBoolean(6, familyFriendly);
-            ps.setBoolean(7, booked);
+            ps.setInt(5, numberOfBeds);
+            ps.setBoolean(6, petFriendly);
+            ps.setBoolean(7, familyFriendly);
+            ps.setBoolean(8, booked);
             ps.executeUpdate();
             ps.close();
             conn.commit();
@@ -108,7 +109,7 @@ public class HotelAndRoomDB implements MakeConnection {
         }
     }
 
-    public ObservableList<Room> searchRooms(int priceLow, int priceHigh, java.sql.Date arrivalTime, int numberOfBeds, boolean petFriendly, boolean familyFriendly, String country){
+    public ObservableList<Room> searchRooms(int priceLow, int priceHigh, java.sql.Date arrivalTime, int numberOfBeds, int petFriendly, int familyFriendly, String country){
         validConnection(conn);
         ObservableList<Room> t = FXCollections.observableArrayList();
         String query = "SELECT Rooms.arrivalTime, Hotels.hotelName, Hotels.hotelAddress, Rooms.price, Rooms.roomRank, Rooms.numberOfBeds, Rooms.petFriendly, Rooms.familyFriendly,"
@@ -149,8 +150,8 @@ public class HotelAndRoomDB implements MakeConnection {
                             rs.getInt("price"),
                             rs.getInt("roomRank"),
                             rs.getInt("numberOfBeds"),
-                            rs.getBoolean("petFriendly"),
-                            rs.getBoolean("familyFriendly")
+                            rs.getInt("petFriendly"),
+                            rs.getInt("familyFriendly")
                     );
                 }
                 LocalDateTime ldt = toLocalDateTime(rs.getLong("tourDate"));
