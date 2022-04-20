@@ -12,7 +12,7 @@ import static application.Utils.*;
 /**
  * @author Team 1H
  *
- * Object that can do queries on the Tours table.
+ * Object that can do queries on the Hotels and Rooms tables.
  */
 public class HotelAndRoomDB implements MakeConnection {
     Connection conn;

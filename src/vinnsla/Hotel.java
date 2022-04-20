@@ -1,5 +1,9 @@
 package vinnsla;
 
+/**
+ * @author Team 1H
+ * Hotel object to store necessary hotel items for the interface.
+ */
 public class Hotel {
     private int hotelId;
     private int room;

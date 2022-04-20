@@ -5,6 +5,12 @@ import javafx.collections.FXCollections;
 import java.util.Date;
 import java.util.function.BooleanSupplier;
 
+/**
+ * @author Team 1H
+ * Room object to store necessary room items connected to hotels.
+ * This is the most important model class because these are the items we show inside the
+ * listView item.
+ */
 public class Room {
     private String hotelName;
     private int roomId;

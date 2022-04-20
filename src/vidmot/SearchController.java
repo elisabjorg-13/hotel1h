@@ -14,12 +14,9 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 /******************************************************************************
- *  Nafn    : Elísa Björg
- *  T-póstur: ebt15@hi.is
+ * @author Team 1H
  *
- *  Lýsing  : Heilsatveim
- *
- *
+ * The controller responsible for all the work inside the search window.
  *****************************************************************************/
 public class SearchController {
     @FXML

@@ -6,7 +6,7 @@ import static application.Utils.*;
 /**
  * @author Team 1H
  *
- * Object that can do queries on the Reservations table.
+ * Object that can do queries on the Users table.
  */
 public class UserDB implements MakeConnection {
     Connection conn;

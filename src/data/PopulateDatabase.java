@@ -15,9 +15,9 @@ import static application.Utils.*;
 /**
  * @author Team 1H
  *
- * Program that inserts fake data into the tables Tours and Dates in tour.db.
+ * Program that inserts fake data into the tables Tours and Dates in hotel.db.
  * All the methods are private since no other program should call and use them.
- * Before running this program it is recommended to run MakeDatabase.java.
+ * Adds the data from hotels.txt, rooms.txt and users.txt to the hotel.db
  */
 public class PopulateDatabase {
 
@@ -86,7 +86,7 @@ public class PopulateDatabase {
     }
 
     /**
-     * Populates the Tours table in tour.db with fake data.
+     * Populates the Tours table in hotel.db with fake data.
      */
     private void makeTours() {
         try {

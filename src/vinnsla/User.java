@@ -1,5 +1,9 @@
 package vinnsla;
 
+/**
+ * @author Team 1H
+ * User object to store necessary user items for the interface.
+ */
 public class User {
     private int userId;
     private String email;
